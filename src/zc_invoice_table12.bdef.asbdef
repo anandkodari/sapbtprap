@@ -1,0 +1,17 @@
+projection implementation in class zbp_c_invoice_table12 unique;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_INVOICE_TABLE12 alias invoice
+{
+  use create;
+  use update;
+  use delete;
+
+  use action uploadExcelData;
+  use action Edit;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+  use action Activate;
+}

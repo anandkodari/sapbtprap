@@ -1,0 +1,53 @@
+@Metadata.layer: #CORE
+annotate entity ZRAP_DEL_ADR_CMP
+    with 
+{
+     
+  @UI.facet: [{ id:'delivery_adr',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                label: 'deliveryadr',
+                position: 10
+
+           }]
+    
+  @UI.hidden: true
+  AddressUuid;  
+    
+  @UI.hidden: true
+  ItemUuid;
+  
+  @UI.hidden: true
+  DeliveryUuid;
+  
+  @UI:{ lineItem: [{ position: 8, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 8, importance: #HIGH }] }
+  @EndUserText.label: 'DeliveryId'
+  DeliveryId;
+
+  @UI:{ lineItem: [{ position: 10, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 10, importance: #HIGH }] }
+  @EndUserText.label: 'Street'
+  Street;
+
+  @UI:{ lineItem: [{ position: 20, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 20, importance: #HIGH }] }
+  @EndUserText.label: 'City'
+  City;
+
+  @UI:{ lineItem: [{ position: 30, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 30, importance: #HIGH }] }
+  @EndUserText.label: 'Postal Code'
+  PostalCode;
+
+  @UI:{ lineItem: [{ position: 40, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 40, importance: #HIGH }] }
+  @EndUserText.label: 'Country'
+  Country;
+
+  @UI:{ lineItem: [{ position: 50, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 50, importance: #HIGH }] }
+  @EndUserText.label: 'Quantity Unit'
+  Region;
+    
+}

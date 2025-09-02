@@ -1,0 +1,6 @@
+@EndUserText.label: 'Rap service definition'
+define service ZRAP_DEL_SERVICE_DEF {
+  expose ZRAP_DELIVERY_CMP;
+  expose ZRAP_DELIVERY_I_CMP;
+  expose ZRAP_DEL_ADR_CMP;
+}

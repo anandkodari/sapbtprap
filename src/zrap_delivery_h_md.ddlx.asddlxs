@@ -1,0 +1,69 @@
+@Metadata.layer: #CORE
+annotate entity ZRAP_DELIVERY_CMP with
+{
+
+  @UI.facet: [{ id:'delivery',
+                purpose: #STANDARD,
+                type: #IDENTIFICATION_REFERENCE,
+                label: 'delivery',
+                position: 10
+              },
+
+              {
+               id: 'delivery_i',
+               purpose: #STANDARD,
+               type: #LINEITEM_REFERENCE,
+               label: 'delivery_i',
+               targetElement: '_Items',
+               position: 20
+             }]
+
+  @UI.hidden: true
+  DeliveryUuid;
+
+  @UI:{ lineItem: [{ position: 10, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 10, importance: #HIGH }] }
+  @EndUserText.label: 'Delivery ID'
+  DeliveryId;
+
+  @UI:{ lineItem: [{ position: 20, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 20, importance: #HIGH }] }
+  @EndUserText.label: 'Delivery Date'
+  DeliveryDate;
+
+//  @UI:{ lineItem: [{ position: 30, importance: #HIGH },
+//                   { value: 'SalesOrderId', navigationAvailable: true } ] }
+@UI.lineItem: [
+  { position: 30, label: 'Sales Order ID', importance: #HIGH, type: #FOR_INTENT_BASED_NAVIGATION, semanticObject: 'SalesOrder', actionGroupId: 'displayOrderInfo'  }
+]
+  @UI:{ identification: [{ position: 30, importance: #HIGH }] }
+  @EndUserText.label: 'SalesOrderId'
+  SalesOrderId;
+
+  @UI:{ lineItem: [{ position: 40, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 40, importance: #HIGH }] }
+  @Consumption.valueHelpDefinition: [{ entity:{ name: '/DMO/I_Customer_StdVH', element: 'CustomerID' },useForValidation: true }]
+  @EndUserText.label: 'Customer Id'
+  CustomerId;
+
+  @UI:{ lineItem: [{ position: 50, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 50, importance: #HIGH }] }
+  @EndUserText.label: 'Delivery Status'
+  DeliveryStatus;
+
+  @UI:{ lineItem: [{ position: 60, importance: #HIGH }] }
+  @UI:{ identification: [{ position: 60, importance: #HIGH }] }
+  @EndUserText.label: 'Shipping Point'
+  ShippingPoint;
+
+  @UI:{ lineItem: [{ position: 70, importance: #LOW }] }
+  @UI:{ identification: [{ position: 70, importance: #HIGH }] }
+  @EndUserText.label: 'Total Weight'
+  TotalWeight;
+
+  @UI:{ lineItem: [{ position: 80, importance: #LOW }] }
+  @UI:{ identification: [{ position: 80, importance: #HIGH }] }
+  @EndUserText.label: 'WeightUnit'
+  WeightUnit;
+
+}

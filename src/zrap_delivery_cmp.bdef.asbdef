@@ -1,0 +1,31 @@
+projection;
+strict ( 2 );
+
+define behavior for ZRAP_DELIVERY_CMP alias delivery_h
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Items { create; }
+
+}
+define behavior for ZRAP_DELIVERY_I_CMP alias delivery_i
+{
+  use update;
+  use delete;
+
+  use association _Header ;
+  use association _adr { create; }
+
+}
+define behavior for ZRAP_DEL_ADR_CMP alias delivery_adr
+{
+  use update;
+  use delete;
+
+  use association _Header ;
+  use association _Items ;
+
+}

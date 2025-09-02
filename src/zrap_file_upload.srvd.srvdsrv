@@ -1,0 +1,4 @@
+@EndUserText.label: 'rap file upload service defination'
+define service ZRAP_file_upload {
+  expose ZC_INVOICE_TABLE12;
+}

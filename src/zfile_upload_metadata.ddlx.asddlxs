@@ -1,0 +1,39 @@
+@Metadata.layer: #CORE
+annotate entity ZC_INVOICE_TABLE12 with
+{
+
+  @UI.facet: [ {
+      label: 'General Information',
+      id: 'GeneralInfo',
+      type: #COLLECTION,
+      position: 10
+    },
+    {
+      id: 'Invoicedet',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Invoice Details',
+      parentId: 'GeneralInfo',
+      position: 10
+    } ]
+
+  @UI.lineItem: [ { position: 10, importance: #HIGH, label: 'Invoice Number' } ]
+  @UI.identification: [ { position: 10, label: 'Invoice Number' } ]
+  Invoice;
+
+  @UI.lineItem: [ { position: 20, importance: #HIGH, label: 'Comments' } ]
+  @UI.identification: [ { position: 20, label: 'Comments' } ]
+  Comments;
+   
+
+  @UI.lineItem: [ { position: 30, importance: #HIGH, label: 'Attachment' } ]
+  @UI.identification: [ { position: 30, label: 'Attachment' } ]
+  Attachment;
+
+  @UI.hidden: true
+  MimeType;
+
+  @UI.hidden: true
+  Filename;
+
+}

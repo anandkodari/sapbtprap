@@ -1,0 +1,94 @@
+managed implementation in class zbp_rap_delivery_int unique;
+strict ( 2 );
+
+define behavior for ZRAP_DELIVERY_INT alias delivery_h
+persistent table zrap_del_h
+lock master
+authorization master ( global, instance )
+//etag master <field_name>
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+  field ( numbering : managed, readonly ) DeliveryUuid;
+  association _Items { create; }
+
+  mapping for zrap_del_h
+    {
+      DeliveryUuid       = delivery_uuid;
+      DeliveryId         = delivery_id;
+      DeliveryDate       = delivery_date;
+      SalesOrderId       = sales_order_id;
+      CustomerId         = customer_id;
+      DeliveryStatus     = delivery_status;
+      ShippingPoint      = shipping_point;
+      TotalWeight        = total_weight;
+      WeightUnit         = weight_unit;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}
+
+define behavior for ZRAP_DEL_I_INT alias delivery_i
+persistent table zrap_del_i
+lock dependent by _Header
+authorization dependent by _Header
+etag master LocalLastChangedAt
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) DeliveryUuid;
+  field ( numbering : managed, readonly ) ItemUuid;
+  association _Header;
+  association _adr { create; }
+
+  mapping for zrap_del_i
+    {
+      ItemUuid           = item_uuid;
+      DeliveryUuid       = parent_uuid;
+      DeliveryId         = delivery_id;
+      ProductId          = item_id;
+      ProductDescription = product_description;
+      Quantity           = quantity;
+      QuantityUnit       = quantity_unit;
+      Price              = price;
+      Currency           = currency;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}
+
+define behavior for ZRAP_DEL_ADR_INT alias delivery_adr
+persistent table zrap_deli_adr
+lock dependent by _Header
+authorization dependent by _Header
+//etag master <field_name>
+etag master LocalLastChangedAt   // system detect the latest timestamp and  prevent overwrite
+{
+  update;
+  delete;
+  field ( readonly ) DeliveryUuid;
+  field ( readonly ) ItemUuid;
+  field ( numbering : managed, readonly ) AddressUuid;
+  association _Header;
+  association _Items;
+  mapping for zrap_deli_adr
+    {
+      AddressUuid        = address_uuid;
+      ItemUuid           = parent_uuid;
+      DeliveryUuid       = delivery_uuid;
+      DeliveryId         = delivery_id;
+      Street             = street;
+      City               = city;
+      PostalCode         = postal_code;
+      Country            = country;
+      Region             = Region;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}
